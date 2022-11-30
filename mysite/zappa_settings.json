@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "django_settings": "mysite.settings",
+        "profile_name": "default",
+        "project_name": "mysite",
+        "runtime": "python3.9",
+        "s3_bucket": "zappa-z14tlhnzj",
+	"aws_region": "eu-west-3"
+    }
+}

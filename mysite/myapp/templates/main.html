@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>My first three.js app</title>
+		<style>
+			body { margin: 0; }
+		</style>
+	</head>
+	<body>
+
+		{% load static %}
+		<script src="/static/three.min.js" type="text/javascript"></script>
+		<!--<script src="{% static '/FirstPersonControls.js' %}" type="text/javascript"></script>
+		<script src="{% static '/PointerLockControls.js' %}" type="text/javascript"></script>-->
+
+		<script>
+			const scene = new THREE.Scene();
+			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+			const renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+
+			//adding a cube
+			const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+			const material = new THREE.MeshPhongMaterial({color: '#8AC'});
+			const cube = new THREE.Mesh( geometry, material );
+			scene.add(cube);
+
+			//add plane
+			const planeSize = 50
+			const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+			const planeMat = new THREE.MeshPhongMaterial({color: '#8AC'});
+			const mesh = new THREE.Mesh(planeGeo, planeMat);
+			mesh.rotation.x = Math.PI * -.5;
+			scene.add(mesh);
+
+			//camerawork
+			
+			//camera.position.z = 5;
+
+			//light
+			const color = 0xFFFFFF;
+			const intensity = 1;
+			const light = new THREE.PointLight(color, intensity);
+			light.position.set(0, 10, 0);
+			scene.add(light);
+			camera.rotation.x = -0.2
+
+			function animate() {
+				requestAnimationFrame( animate );
+
+				cube.rotation.x += 0.01;
+				cube.rotation.y += 0.01;
+
+				renderer.render( scene, camera );
+			};
+
+			animate();
+		
+		</script>
+	</body>
+</html>
